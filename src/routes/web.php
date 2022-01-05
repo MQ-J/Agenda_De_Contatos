@@ -26,7 +26,7 @@ Route::get('/', function () {
 });
 
 Route::get('/novoContato', function () {
-  echo App\Http\Controllers\ContatoController::index(1);
+  echo App\Http\Controllers\ContatoController::novo();
 });
 
 Route::get('/editarContato', function () {

@@ -25,11 +25,16 @@ class ContatoController extends Controller
         switch($menu)
         {
           case 0: return view('agenda'); break;
-          case 1: return view('novo'); break;
           case 2: return view('edita'); break;
           case 3: return view('apaga'); break;
         }
       }
+    }
+
+    public static function novo()
+    {
+      
+      return view('novo');
     }
 
     /**
