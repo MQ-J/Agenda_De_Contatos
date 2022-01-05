@@ -5,7 +5,7 @@
 @stop
 
 @section('conteudo')
-<form class="col-8">
+<form class="col-8" action="{{url('/guardaContato')}}" method="post">
   <div class="form-group">
     <label for="nome">Nome do contato</label>
     <input type="text" class="form-control" id="nome" required>
