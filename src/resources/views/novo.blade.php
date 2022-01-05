@@ -5,20 +5,15 @@
 @stop
 
 @section('conteudo')
-<form class="col-5">
+<form class="col-8">
   <div class="form-group">
-    <label for="exampleInputEmail1">Endereço de email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
-    <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+    <label for="nome">Nome do contato</label>
+    <input type="text" class="form-control" id="nome" required>
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Senha</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+    <label for="telefone">Número</label>
+    <input type="tel" class="form-control" id="telefone" placeholder="somente números" required>
   </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Clique em mim</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Enviar</button>
+  <button type="submit" class="btn btn-primary">Criar</button>
 </form>
 @stop
