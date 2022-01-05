@@ -18,11 +18,18 @@ class ContatoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public static function index()
+    public static function index($menu)
     {
-      $pessoas = "data";
-      $teste = 1;
-      return view('welcome', compact('pessoas', 'teste'));
+      if (isset($menu))
+      {
+        switch($menu)
+        {
+          case 0: return view('agenda'); break;
+          case 1: return view('novo'); break;
+          case 2: return view('edita'); break;
+          case 3: return view('apaga'); break;
+        }
+      }
     }
 
     /**
@@ -32,7 +39,7 @@ class ContatoController extends Controller
      */
     public function create()
     {
-        //
+      $contato = new Contato();
     }
 
     /**
@@ -43,7 +50,7 @@ class ContatoController extends Controller
      */
     public function store(StoreContatoRequest $request)
     {
-        //
+      $idade = $contato->__get("idade");
     }
 
     /**

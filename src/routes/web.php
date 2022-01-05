@@ -22,9 +22,17 @@ use Illuminate\Support\Facades\Route;
 // Route::get('localhost:8080/', 'App/Http/Controllers/ContatoController::index');
 
 Route::get('/', function () {
-  echo App\Http\Controllers\ContatoController::index();
+  echo App\Http\Controllers\ContatoController::index(0);
 });
 
-// TALVEZ ISSO AJUDE A ENTENDER CONCEITOS
-// $post = App\Models\Contato::find(1);
-// echo url("/posts/{$post->id}");
+Route::get('/novoContato', function () {
+  echo App\Http\Controllers\ContatoController::index(1);
+});
+
+Route::get('/editarContato', function () {
+  echo App\Http\Controllers\ContatoController::index(2);
+});
+
+Route::get('/apagarContato', function () {
+  echo App\Http\Controllers\ContatoController::index(3);
+});
