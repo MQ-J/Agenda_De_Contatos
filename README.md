@@ -1,4 +1,4 @@
-# Laravel on Replit
+# Laravel on Replit: fork by MQ-J
 
 > Important: This project uses the built-in PHP webserver. This is not advised by the Laravel project maintainers. Additional code for this to work in Replit was placed in Providers\AppServiceProvider. 
 
