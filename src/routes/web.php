@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 /*TELAS PRINCIPAIS*/
 Route::get('/', function () {
-  echo App\Http\Controllers\ContatoController::index(0);
+  echo App\Http\Controllers\ContatoController::show();
 });
 Route::get('/novoContato', function () {
   echo App\Http\Controllers\ContatoController::index(1);
@@ -36,25 +36,4 @@ Route::get('/apagarContato', function () {
 });
 
 /*TELAS SECUNDÁRIAS DE AÇÃO*/
-Route::get('/guardaContato', function (){
-  echo App\Http\Controllers\ContatoController::create();
-});
-
-Route::get('/test-conn', function () {
-    // Insere um novo usuário ao banco de dados:
-    $user = \App\Models\Contato::create([
-        'name'         => 'Carlos Ferreira',
-        'email'     => 'carlos@especializati.com.br',
-        'password'     => bcrypt('SenhaAqui'),
-    ]);
-    // Se quiser exibir os dados do usuário: dd($user);
- 
-    // Listando os usuários
-    $users = \App\User::get();
- 
-    echo '<hr>';
-    foreach ($users as $user) {
-        echo "{$user->name} <br>";
-    }
-    echo '<hr>';
-});
+Route::get('/guardaContato', [ContatoController::class, 'store'])->name('novocontato');

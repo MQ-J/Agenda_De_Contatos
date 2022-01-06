@@ -24,7 +24,6 @@ class ContatoController extends Controller
       {
         switch($menu)
         {
-          case 0: return view('agenda'); break;
           case 1: return view('novo'); break;
           case 2: return view('edita'); break;
           case 3: return view('apaga'); break;
@@ -39,7 +38,7 @@ class ContatoController extends Controller
      */
     public function create()
     {
-      $contato = new Contato();
+
     }
 
     /**
@@ -48,9 +47,16 @@ class ContatoController extends Controller
      * @param  \App\Http\Requests\StoreContatoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreContatoRequest $request)
+    public static function store(StoreContatoRequest $request)
     {
-      $idade = $contato->__get("idade");
+      $nome = $request->get("nome");
+      $numero = $request->get("numero");
+
+      $contato = \App\Models\Contato::create([
+        'nome'         => $nome,
+        'numero' => $numero]);
+
+      return view('novo', compact('contato'));
     }
 
     /**
@@ -59,9 +65,11 @@ class ContatoController extends Controller
      * @param  \App\Models\Contato  $contato
      * @return \Illuminate\Http\Response
      */
-    public function show(Contato $contato)
+    public static function show()
     {
-        //
+      $contatos = \App\Models\Contato::get();
+
+      return view('agenda', compact('contatos'));
     }
 
     /**
