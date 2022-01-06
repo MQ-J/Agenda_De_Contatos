@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,5 +36,20 @@ Route::get('/apagarContato', function () {
   echo App\Http\Controllers\ContatoController::index(3);
 });
 
-/*TELAS SECUNDÁRIAS DE AÇÃO*/
-Route::get('/guardaContato', [ContatoController::class, 'store'])->name('novocontato');
+/*TENTATIVAS DE CRIAR CONTATO NO CONTROLLER*/
+
+Route::get('/guardaContato/{nome}/{numero}', 'App\Http\Controllers\ContatoController@store');
+
+// Route::get('/guardaContato{nome}{numero}', App\Http\Controllers\ContatoController::store(['nome' => 'direto na funcao', 'numero' => '123']));
+
+// Route::get('/guardaContato{nome}{numero}', function (Request $request) {
+
+//       $nome = $request->get("nome");
+//       $numero = $request->get("numero");
+
+//       $contato = \App\Models\Contato::create([
+//         'nome'         => $nome,
+//         'numero' => $numero]);
+
+//       return view('novo', compact('contato'));
+// });

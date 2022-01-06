@@ -8,10 +8,6 @@ use App\Models\Contato;
 
 class ContatoController extends Controller
 {
-    public function __invoke()
-    {
-        // ...
-    }
     
     /**
      * Display a listing of the resource.
@@ -49,6 +45,14 @@ class ContatoController extends Controller
      */
     public static function store(StoreContatoRequest $request)
     {
+      // Definição das regras
+      $rules = [
+        'nome' => 'required|min:3',
+        'numero' => 'required|min:3',
+      ];
+      // Validação da Request   
+      $request->validate($rules);
+
       $nome = $request->get("nome");
       $numero = $request->get("numero");
 
