@@ -50,6 +50,7 @@ class ContatoController extends Controller
         'nome' => 'required|min:3',
         'numero' => 'required|min:3',
       ];
+
       // Validação da Request   
       $request->validate($rules);
 

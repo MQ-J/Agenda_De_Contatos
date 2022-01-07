@@ -38,7 +38,7 @@ Route::get('/apagarContato', function () {
 
 /*TENTATIVAS DE CRIAR CONTATO NO CONTROLLER*/
 
-Route::get('/guardaContato/{nome}/{numero}', 'App\Http\Controllers\ContatoController@store');
+Route::get('/guardaContato', 'App\Http\Controllers\ContatoController@store');
 
 // Route::get('/guardaContato{nome}{numero}', App\Http\Controllers\ContatoController::store(['nome' => 'direto na funcao', 'numero' => '123']));
 
