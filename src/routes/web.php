@@ -26,12 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
   echo App\Http\Controllers\ContatoController::show();
 });
-Route::get('/novoContato', function () {
-  echo App\Http\Controllers\ContatoController::index(1);
-});
-Route::get('/editarContato', function () {
-  echo App\Http\Controllers\ContatoController::index(2);
-});
+Route::get('/novoContato', 'App\Http\Controllers\ContatoController@create');
+
+Route::get('/editarContato', 'App\Http\Controllers\ContatoController@edit');
+
 Route::get('/apagarContato', function () {
   echo App\Http\Controllers\ContatoController::index(3);
 });
@@ -40,16 +38,4 @@ Route::get('/apagarContato', function () {
 
 Route::get('/guardaContato', 'App\Http\Controllers\ContatoController@store');
 
-// Route::get('/guardaContato{nome}{numero}', App\Http\Controllers\ContatoController::store(['nome' => 'direto na funcao', 'numero' => '123']));
-
-// Route::get('/guardaContato{nome}{numero}', function (Request $request) {
-
-//       $nome = $request->get("nome");
-//       $numero = $request->get("numero");
-
-//       $contato = \App\Models\Contato::create([
-//         'nome'         => $nome,
-//         'numero' => $numero]);
-
-//       return view('novo', compact('contato'));
-// });
+Route::get('/atualizaContato', 'App\Http\Controllers\ContatoController@update');

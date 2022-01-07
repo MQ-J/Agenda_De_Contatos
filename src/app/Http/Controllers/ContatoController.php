@@ -20,8 +20,6 @@ class ContatoController extends Controller
       {
         switch($menu)
         {
-          case 1: return view('novo'); break;
-          case 2: return view('edita'); break;
           case 3: return view('apaga'); break;
         }
       }
@@ -32,9 +30,9 @@ class ContatoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public static function create()
     {
-
+      return view('novo');
     }
 
     /**
@@ -83,9 +81,9 @@ class ContatoController extends Controller
      * @param  \App\Models\Contato  $contato
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contato $contato)
+    public static function edit()
     {
-        //
+      return view('edita');
     }
 
     /**
@@ -95,9 +93,26 @@ class ContatoController extends Controller
      * @param  \App\Models\Contato  $contato
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateContatoRequest $request, Contato $contato)
+    public static function update(UpdateContatoRequest $request, Contato $contato)
     {
-        //
+      // Definição das regras
+      $rules = [
+        'nome' => 'required|min:3',
+        'numero' => 'required|min:3',
+      ];
+
+      // Validação da Request   
+      $request->validate($rules);
+
+      $nome = $request->get("nome");
+      $numero = $request->get("numero");
+      $novonome = $request->get("novonome");
+      $novonumero = $request->get("novonumero");
+
+      // COMO ASSIM MÉTODO DO MODEL TEM QUE SER ESTÁTICO?
+      // $contato = \App\Models\Contato::update();
+
+      return view('edita', compact('contato'));
     }
 
     /**
