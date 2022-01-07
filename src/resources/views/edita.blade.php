@@ -7,7 +7,7 @@
 @section('conteudo')
 
   <? if(isset($contato)) : ?>
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-warning" role="alert">Não funciona ainda
     {{$contato->nome}} <br>
     {{$contato->numero}}
     </div>
