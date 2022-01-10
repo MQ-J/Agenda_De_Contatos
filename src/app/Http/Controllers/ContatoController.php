@@ -25,27 +25,18 @@ class ContatoController extends Controller
       }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    /* CHAMA VIEW PARA DIGITAR DADOS DO NOVO CONTATO */
     public static function create()
     {
       return view('novo');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreContatoRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    /* SALVA DADOS DO NOVO CONTATO */
     public static function store(StoreContatoRequest $request)
     {
       // Definição das regras
       $rules = [
-        'nome' => 'required|min:3',
+        'nome' => 'required|min:1',
         'numero' => 'required|min:3',
       ];
 
@@ -75,25 +66,14 @@ class ContatoController extends Controller
       return view('agenda', compact('contatos'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Contato  $contato
-     * @return \Illuminate\Http\Response
-     */
+    /* CHAMA VIEW PARA DIGITAR DADOS PARA MUDAR CONTATO */
     public static function edit()
     {
       return view('edita');
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateContatoRequest  $request
-     * @param  \App\Models\Contato  $contato
-     * @return \Illuminate\Http\Response
-     */
-    public static function update(UpdateContatoRequest $request, Contato $contato)
+    
+    /* INSERE OS DADOS DIGITADOS NO CONTATO */
+    public static function update(UpdateContatoRequest $request)
     {
       // Definição das regras
       $rules = [
@@ -102,16 +82,30 @@ class ContatoController extends Controller
       ];
 
       // Validação da Request   
-      $request->validate($rules);
+      // $request->validate($rules);
 
+      //pega os dados do requerimento
       $nome = $request->get("nome");
-      $numero = $request->get("numero");
       $novonome = $request->get("novonome");
       $novonumero = $request->get("novonumero");
 
-      // COMO ASSIM MÉTODO DO MODEL TEM QUE SER ESTÁTICO?
-      // $contato = \App\Models\Contato::update();
+      //usa $nome para buscar um contato
+      $contato = \App\Models\Contato::where('nome', '=', $nome)->first();
 
+      if($contato == null)
+      {
+        $erro = "Contato não encontrado";
+        return view('edita', compact('erro'));
+      }
+
+      //usa $novonome e $novonumero para editar o contato
+      $contato->nome = $novonome;
+      $contato->numero = $novonumero;
+
+      //salva as alterações no contato
+      $contato->save();
+
+      //chama a view denovo para mostrar as edições feitas
       return view('edita', compact('contato'));
     }
 

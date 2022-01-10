@@ -7,9 +7,15 @@
 @section('conteudo')
 
   <? if(isset($contato)) : ?>
-    <div class="alert alert-warning" role="alert">Não funciona ainda
+    <div class="alert alert-warning" role="alert">
+    Agora atualizado para:
     {{$contato->nome}} <br>
     {{$contato->numero}}
+    </div>
+  <? endif ?>
+  <? if(isset($erro)) : ?>
+    <div class="alert alert-danger" role="alert">
+    <?= $erro ?>
     </div>
   <? endif ?>
 
@@ -19,10 +25,6 @@
     <input type="text" class="form-control" id="nome" name="nome" required>
     </div>
     <div class="form-group">
-    <label for="numero">Número</label>
-    <input type="text" class="form-control" id="numero" name="numero" placeholder="somente números" required>
-    </div>
-    <div class="form-group">
     <label for="novonome">Novo Nome</label>
     <input type="text" class="form-control" id="novonome" name="novonome" required>
     </div>
@@ -30,7 +32,7 @@
     <label for="novonumero">Novo Número</label>
     <input type="text" class="form-control" id="novonumero" name="novonumero" placeholder="somente números" required>
     </div>
-    <button type="submit" class="btn btn-primary">Criar</button>
+    <button type="submit" class="btn btn-primary">Editar</button>
   </form>
   
 @stop
