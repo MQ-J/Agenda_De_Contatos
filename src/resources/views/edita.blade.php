@@ -7,10 +7,10 @@
 @section('conteudo')
 
   <? if(isset($contato)) : ?>
-    <div class="alert alert-warning" role="alert">
-    Agora atualizado para:
-    {{$contato->nome}} <br>
-    {{$contato->numero}}
+    <div class="alert alert-warning col-8" role="alert">
+    <p class="text-center">Contato atualizado para:</p>
+    nome: {{$contato->nome}} <br>
+    numero: {{$contato->numero}}
     </div>
   <? endif ?>
   <? if(isset($erro)) : ?>

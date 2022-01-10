@@ -7,9 +7,10 @@
 @section('conteudo')
 
   <? if(isset($contato)) : ?>
-    <div class="alert alert-success" role="alert">
-    {{$contato->nome}} <br>
-    {{$contato->numero}}
+    <div class="alert alert-success col-8" role="alert">
+    <p class="text-center">Contato criado com sucesso</p>
+    nome: {{$contato->nome}} <br>
+    numero: {{$contato->numero}}
     </div>
   <? endif ?>
 
