@@ -9,81 +9,57 @@ use App\Models\Contato;
 class ContatoController extends Controller
 {
     
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public static function index($menu)
     {
-      if (isset($menu))
-      {
-        switch($menu)
-        {
-          case 3: return view('apaga'); break;
-        }
-      }
+      //
     }
 
-    /* CHAMA VIEW PARA DIGITAR DADOS DO NOVO CONTATO */
-    public static function create()
+    /* TELA PRINCIPAL COM TODOS OS CONTATOS */
+    public function show()
+    {
+      //busca todos os contatos
+      $contatos = \App\Models\Contato::get();
+      
+      //manda todos os contatos para a view principal
+      return view('agenda', compact('contatos'));
+    }
+
+
+    /* CHAMA VIEW PARA NOVO CONTATO */
+    public function create()
     {
       return view('novo');
     }
 
-    /* SALVA DADOS DO NOVO CONTATO */
-    public static function store(StoreContatoRequest $request)
+
+    /* SALVA NOVO CONTATO */
+    public function store(StoreContatoRequest $request)
     {
-      // Definição das regras
-      $rules = [
-        'nome' => 'required|min:1',
-        'numero' => 'required|min:3',
-      ];
-
-      // Validação da Request   
-      $request->validate($rules);
-
+      //pega os dados do requerimento
       $nome = $request->get("nome");
       $numero = $request->get("numero");
 
+      //usa esses dados para criar contato
       $contato = \App\Models\Contato::create([
         'nome'         => $nome,
         'numero' => $numero]);
 
+      //chama view denovo para mostrar que salvou mesmo
       return view('novo', compact('contato'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Contato  $contato
-     * @return \Illuminate\Http\Response
-     */
-    public static function show()
-    {
-      $contatos = \App\Models\Contato::get();
 
-      return view('agenda', compact('contatos'));
-    }
-
-    /* CHAMA VIEW PARA DIGITAR DADOS PARA MUDAR CONTATO */
-    public static function edit()
+    /* CHAMA VIEW PARA MUDAR CONTATO */
+    public function edit()
     {
       return view('edita');
     }
     
-    /* INSERE OS DADOS DIGITADOS NO CONTATO */
-    public static function update(UpdateContatoRequest $request)
+
+    /* SALVA EDIÇÕES NO CONTATO */
+    public function update(UpdateContatoRequest $request)
     {
-      // Definição das regras
-      $rules = [
-        'nome' => 'required|min:3',
-        'numero' => 'required|min:3',
-      ];
-
-      // Validação da Request   
-      // $request->validate($rules);
-
       //pega os dados do requerimento
       $nome = $request->get("nome");
       $novonome = $request->get("novonome");
@@ -92,6 +68,7 @@ class ContatoController extends Controller
       //usa $nome para buscar um contato
       $contato = \App\Models\Contato::where('nome', '=', $nome)->first();
 
+      //se não encontrar esse contato, retornar um erro
       if($contato == null)
       {
         $erro = "Contato não encontrado";
@@ -109,14 +86,26 @@ class ContatoController extends Controller
       return view('edita', compact('contato'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Contato  $contato
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contato $contato)
+
+    /* CHAMA VIEW PARA APAGAR CONTATO */
+    public function delete()
     {
-        //
+      return view('apaga');
+    }
+
+    /* APAGA CONTATO */
+    public function destroy(StoreContatoRequest $request)
+    {
+      //pega os dados do requerimento
+      $nome = $request->get("nome");
+
+      //usa $nome para buscar um contato
+      $contato = \App\Models\Contato::where('nome', '=', $nome)->first();
+
+      //apaga contato
+      $contato->delete();
+
+      //chama a view denovo para mostrar as edições feitas
+      return view('apaga', compact('contato'));
     }
 }
