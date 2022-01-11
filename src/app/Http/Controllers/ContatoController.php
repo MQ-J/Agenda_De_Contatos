@@ -102,6 +102,13 @@ class ContatoController extends Controller
       //usa $nome para buscar um contato
       $contato = \App\Models\Contato::where('nome', '=', $nome)->first();
 
+      //se não encontrar esse contato, retornar um erro
+      if($contato == null)
+      {
+        $erro = "Contato não encontrado";
+        return view('apaga', compact('erro'));
+      }
+
       //apaga contato
       $contato->delete();
 

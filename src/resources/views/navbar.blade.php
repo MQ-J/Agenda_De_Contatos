@@ -5,7 +5,7 @@
       <img src="https://cdn-icons-png.flaticon.com/512/1801/1801457.png" width="40" hight="40">
     </button>
 
-  <div class="collapse navbar-collapse" id="navbarViews">
+  <div class="collapse navbar-collapse justify-content-center" id="navbarViews">
     <ul class="navbar-nav ms-auto">
 
       <li class="nav-item">

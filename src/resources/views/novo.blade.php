@@ -5,16 +5,20 @@
 @stop
 
 @section('conteudo')
+<div class="container">
 
+<div class="row justify-content-center">
   <? if(isset($contato)) : ?>
-    <div class="alert alert-success col-8" role="alert">
+    <div class="alert alert-success col-5" role="alert">
     <p class="text-center">Contato criado com sucesso</p>
     nome: {{$contato->nome}} <br>
     numero: {{$contato->numero}}
     </div>
   <? endif ?>
+</div>
 
-  <form class="col-8" action="https://laravel-on-replit.mqj.repl.co/guardaContato" method="get">
+<div class="row justify-content-center">
+  <form class="col-5" action="https://laravel-on-replit.mqj.repl.co/guardaContato" method="get">
     <div class="form-group">
     <label for="nome">Nome do contato</label>
     <input type="text" class="form-control" id="nome" name="nome" required>
@@ -25,4 +29,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Criar</button>
   </form>
+</div>
+
+</div>
 @stop
