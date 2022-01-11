@@ -16,7 +16,7 @@
     <header>
       @include('navbar')
     </header>
-
+    <br>
     <section>
       @yield('conteudo')
     </section>
